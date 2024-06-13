@@ -1,15 +1,200 @@
+import time
+import random
+versao = '7.4.1'
 
-# 💻 Tech Stack:
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![OpenCV](https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-%2300000f.svg?style=for-the-badge&logo=mysql&logoColor=white) ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white) ![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white) ![Zigbee](https://img.shields.io/badge/zigbee-%23EB0443.svg?style=for-the-badge&logo=zigbee&logoColor=white) ![Home Assistant](https://img.shields.io/badge/home%20assistant-%2341BDF5.svg?style=for-the-badge&logo=home-assistant&logoColor=white) ![Mosquitto](https://img.shields.io/badge/mosquitto-%233C5280.svg?style=for-the-badge&logo=eclipsemosquitto&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![Raspberry Pi](https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&logo=Raspberry-Pi) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) ![Apache](https://img.shields.io/badge/apache-%23D42029.svg?style=for-the-badge&logo=apache&logoColor=white) ![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
-# 📊 GitHub Stats:
-![](https://github-readme-stats.vercel.app/api?username=Lukaspy3&theme=dark&hide_border=false&include_all_commits=false&count_private=false)<br/>
-![](https://github-readme-streak-stats.herokuapp.com/?user=Lukaspy3&theme=dark&hide_border=false)<br/>
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=Lukaspy3&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
 
-## 🏆 GitHub Trophies
-![](https://github-profile-trophy.vercel.app/?username=Lukaspy3&theme=discord&no-frame=false&no-bg=true&margin-w=4)
+# CÓDIGOS ANSI PARA CORES:
+class Color:
+    RESET = '\033[0m'
+    R = '\033[91m'
+    G = '\033[92m'
+    Y = '\033[93m'
+    B = '\033[94m'
+    M = '\033[95m'
+    C = '\033[96m'
+    W = '\033[97m'
+    BL = '\033[90m'
 
----
-[![](https://visitcount.itsvg.in/api?id=Lukaspy3&icon=0&color=0)](https://visitcount.itsvg.in)
+print("\n" *150)
 
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+# INTRODUÇÃO AO JOGO:
+time.sleep(1)
+print(f"JOGO APENAS PARA GÊNIOS\nby ŁŮƘÄ§\n\n{Color.B}versão: {versao}\n{Color.RESET}")
+print()
+time.sleep(1)
+print(f"{Color.C}NOVO JOGO{Color.RESET}")
+print()
+
+# ESCOLHER O MODO:
+
+while True:
+    modo = input(f"SELECIONE O MODO:\n{Color.G}FACIL{Color.RESET}\n{Color.Y}MEDIO{Color.RESET}\n{Color.R}DIFICIL{Color.RESET}\n{Color.BL}EXTREMO{Color.RESET}\n{Color.W}DEUS{Color.RESET}\n\n")
+    modo = modo.lower()
+
+    if modo in ['facil', 'medio', 'dificil', 'extremo', 'deus']:
+        break
+    else:
+        print()
+        print(f"{Color.R}Por favor, selecione um modo válido.{Color.RESET}")
+        time.sleep(2)
+        print("\n" *150)
+        continue
+
+# CONFIGURAÇÃO DO GAME:
+numero_minimo = 1
+numero_maximo = 60
+
+# DIFICULDADE:
+tentativas = 6
+tempo_feed = 1
+
+# System modo config:
+if modo == 'facil':
+    numero_minimo = 1
+    numero_maximo = 10
+    tentativas = 5
+    tempo_feed = 2
+    margem = 4
+    temp = 2
+
+elif modo == 'medio':
+    numero_minimo = 1
+    numero_maximo = 30
+    tentativas = 7
+    tempo_feed = 1
+    margem = 17
+    temp = 2
+
+elif modo == 'dificil':
+    numero_minimo = 1
+    numero_maximo = 60
+    tentativas = 6
+    tempo_feed = 0,5
+    margem = 50
+    temp = random.randint(1, 6)
+
+elif modo == 'extremo':
+    numero_minimo = 1
+    numero_maximo = 100
+    tentativas = random.randint(4,6)
+    tempo_feed = random.uniform(0.1, 0.5)
+    margem = 100
+    temp = random.randint(1, 6)
+    
+elif modo == 'deus':
+    numero_minimo = 1
+    numero_maximo = random.randint(numero_minimo, 100)
+    tentativas = random.randint(1, 5)
+    tempo_feed = random.uniform(0.1, 1)
+    margem = random.randint(4, 100)
+    temp = random.uniform(1, 7)
+
+# FUNÇÃO PARA PISCAR TEXTO:
+
+def texto_piscante(texto, duracao=3, frequencia=1):
+    ciclos = int(duracao / frequencia)
+
+    for _ in range(ciclos):
+        print(texto, end='\r')  # '\r' move o cursor de volta ao início da linha
+        time.sleep(frequencia)
+        print(" " * len(texto), end='\r')  # Limpa o texto
+        time.sleep(frequencia)
+
+# PRIMEIRA TELA:
+print("\n" *150)
+time.sleep(2)
+print(f"{Color.W}NIVEL: {modo}{Color.RESET}")
+time.sleep(2)
+print("O sistema vai gerar um número")
+time.sleep(2)
+print(f"Aleatório entre {Color.G}{numero_minimo}{Color.RESET} e {Color.R}{numero_maximo}{Color.RESET}")
+time.sleep(2)
+print("Chute até acertar")
+time.sleep(2)
+print(f"Você tem {Color.C}{tentativas}{Color.RESET} chances")
+time.sleep(2)
+print("\n" * 150)
+
+# GAME:
+
+while True:
+    num_system = random.randint(numero_minimo, numero_maximo)
+    tentativas_restantes = tentativas
+
+    texto_piscante(f"{Color.Y} GERANDO NOVO NÚMERO{Color.RESET}", duracao=1, frequencia=0.1)
+
+
+    while tentativas_restantes > 0:
+        num_user = ""
+        print("\n" * 150)
+        print(f"{Color.C}Modo: {modo}{Color.RESET}")
+        print()
+        print(f"Numero entre {Color.G}{numero_minimo}{Color.RESET} e {Color.R}{numero_maximo}{Color.RESET}")
+        print()
+        print(f"{Color.B}TENTATIVAS RESTANTES: {tentativas_restantes}{Color.RESET}")
+        print()
+        num_user = ""
+        num_user = str(input(f"{Color.G}Digite seu chute do número: \n{Color.RESET}"))
+        texto_piscante(f"{Color.Y} Processando...{Color.RESET}", duracao=temp, frequencia=0.5)
+        print()
+
+        if not num_user.isdigit():
+            print(f"{Color.Y}Por favor, insira um número válido.{Color.RESET}")
+            time.sleep(2)
+            print("\n" * 150)
+            continue
+
+        num_user = int(num_user)
+
+        if num_user == num_system:
+            print(f"{Color.G}Você acertou!{Color.RESET}")
+            print()
+            print(f"{Color.G}O NÚMERO ERA: {num_system}{Color.RESET}")
+            print()
+            num_user = ""
+            time.sleep(1)
+            print("Boa!!!\n")
+            texto_piscante(f"{Color.Y}COMEÇANDO NOVA PARTIDA...{Color.RESET}", duracao=2, frequencia=0.5)
+            time.sleep(1)
+            print("\n" * 150)
+            break
+
+        elif num_user > numero_maximo or num_user < numero_minimo:
+            print(f"{Color.R}Você é burro? o número é entre {numero_minimo} e {numero_maximo}{Color.RESET}")
+            time.sleep(4)
+            print("\n" * 150)
+            continue
+
+        elif num_user > num_system:
+            if num_user - num_system > margem:
+                print(f"{Color.R}Seu chute foi muito acima{Color.RESET}")
+                time.sleep(tempo_feed)
+                print("\n" * 150)
+            else:
+                print(f"{Color.Y}Seu chute foi acima.{Color.RESET}")
+                time.sleep(tempo_feed)
+                print("\n" * 150)
+
+        elif num_user < num_system:
+            if num_system - num_user > margem:
+                print(f"{Color.B}Seu chute foi muito abaixo{Color.RESET}")
+                time.sleep(tempo_feed)
+                print("\n" * 150)
+            else:
+                print(f"{Color.G}Seu chute foi abaixo.{Color.RESET}")
+                time.sleep(tempo_feed)
+                print("\n" * 150)
+
+        tentativas_restantes -= 1
+        print(f"{Color.B}Tentativas restantes: {tentativas_restantes}{Color.RESET}")
+
+        if tentativas_restantes <1 and num_user != num_system:
+            print()
+            print(f"{Color.G}O NÚMERO ERA: {num_system}{Color.RESET}")
+            print()
+            time.sleep(1)
+            print("Tente novamente :( \n")
+            texto_piscante(f"{Color.Y}COMEÇANDO NOVA PATIDA...{Color.RESET}", duracao=2, frequencia=0.5)
+            print("\n" * 150)
+            num_user = ""
+            num_system = random.randint(numero_minimo, numero_maximo)
